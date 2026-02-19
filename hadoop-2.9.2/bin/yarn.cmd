@@ -46,18 +46,7 @@
 
 setlocal enabledelayedexpansion
 
-if not defined HADOOP_BIN_PATH ( 
-  set HADOOP_BIN_PATH=%~dp0
-)
-
-if "%HADOOP_BIN_PATH:~-1%" == "\" (
-  set HADOOP_BIN_PATH=%HADOOP_BIN_PATH:~0,-1%
-)
-
-set DEFAULT_LIBEXEC_DIR=%HADOOP_BIN_PATH%\..\libexec
-if not defined HADOOP_LIBEXEC_DIR (
-  set HADOOP_LIBEXEC_DIR=%DEFAULT_LIBEXEC_DIR%
-)
+call "%~dp0hadoop-bin-utils.cmd"
 
 call %DEFAULT_LIBEXEC_DIR%\yarn-config.cmd %*
 if "%1" == "--config" (
